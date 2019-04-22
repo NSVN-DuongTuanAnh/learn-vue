@@ -1,0 +1,13 @@
+#addNote{
+	margin: 5px;
+}
+.note-title{
+	cursor: pointer;
+}
+.selected{
+	background: #28a745;
+	color: #ffffff;
+}
+.preview-note{
+	border-left: 1px solid #dddddd;	
+}
