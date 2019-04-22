@@ -11,31 +11,11 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://unpkg.com/marked"></script>
+		<script src="https://unpkg.com/moment"></script>
 		<link rel="stylesheet" href="style.css">
-		<style>
-			.red{
-				background: red;
-			}
-			.blue{
-				background: blue;
-			}
-			.colorDiv{
-				float: left;
-				margin: 0 0 0 10px;
-				width: 20px;
-				height: 20px;
-			}
-			#productImage{
-				max-width: 100%;
-				height: 400px
-			}
-			.activeTab{
-				color: green;
-				text-decoration: outline;
-			}
-		</style>
+		
 	</head>
-	<body>
+	<body style="height:1280px;">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 			<a class="navbar-brand" href="#">Top navbar</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +48,9 @@
 					<button type="button" :title="addTitlebutton" class="btn btn-default" id="addNote" @click="addNote">Add note</button>
 					
 					<ul class="list-group">
-						<li class="list-group-item note-title" v-bind:class="{selected: note.id === selectedId }" v-for="note in notes" @click="selectNote(note)">{{note.title}}</li>
+						<li class="list-group-item note-title" v-bind:class="{selected: note.id === selectedId }" v-for="note in sortedNotes" @click="selectNote(note)">{{note.title}}
+							<span class="note-list-star"><i v-if="note.favorite" class="fas fa-star right"></i></span>
+						</li>
 						
 					</ul>
 				</div>
@@ -85,13 +67,30 @@
 						</fieldset>
 						<fieldset class="form-group">
 							<button type="button" @click="removeNote" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-							<button type="button" v-on:click="favoriteNote" class="btn btn-success"><i class="far fa-star" v-bind:class="{}" ></i></button>
+							<button type="button" v-on:click="favoriteNote" class="btn btn-success"><i class="" v-bind:class="{'fas fa-star': selectedNote.favorite, 'far fa-star': !selectedNote.favorite}" ></i></button>
 						</fieldset>
 					</form>
+					
 					
 				</div>
 				<div class="col-md-5 preview-note">
 					<p v-html="previewNote"></p>
+					<div class="status-bar">
+						<span>Created:</span>
+						<span class="">{{selectedNote.created | date}}</span>
+						<span class="lines">
+							<span class="label">Lines</span>
+							<span class="value">{{ linesCount }}</span>
+						</span>
+						<span class="words">
+							<span class="label">Words</span>
+							<span class="value">{{ wordsCount }}</span>
+						</span>
+						<span class="characters">
+							<span class="label">Characters</span>
+							<span class="value">{{ charactersCount }}</span>
+						</span>
+					</div>
 				</div>
 				</template>
 			</div>

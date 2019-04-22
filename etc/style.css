@@ -1,3 +1,12 @@
+body{
+	height: 1280px !important;
+}
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
 #addNote{
 	margin: 5px;
 }
@@ -8,6 +17,14 @@
 	background: #28a745;
 	color: #ffffff;
 }
+.selected .note-list-star{
+	color: #ffffff;
+}
 .preview-note{
 	border-left: 1px solid #dddddd;	
 }
+.note-list-star{
+	color: #28a745;
+}
+
+/* project2 */
