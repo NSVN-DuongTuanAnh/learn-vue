@@ -51,4 +51,5 @@ var state = {
   drawPile: pile,
   discardPile: {},
   canPlay: false,
+  testHand:[]
 }
