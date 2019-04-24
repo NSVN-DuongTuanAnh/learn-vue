@@ -3,11 +3,14 @@ new Vue({
 	el:'#app',
 	data:state,
 	template:`<div id="app">
-	
 	<top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players">
 	</top-bar>
-
-	<card :def="testCard" @play="handlePlay" />
+	<transition name="hand">
+		<hand :cards="testHand" @card-play="testPlayCard" v-if="!activeOverlay" />
+	</transition>
+	<overlay>
+ 		<overlay-content-player-turn />
+	</overlay>
 	</div>`,
 	computed:{
 		testCard() {
@@ -23,7 +26,7 @@ new Vue({
  			// Get the possible ids
  			const ids = Object.keys(cards);
  			for (let i = 0; i < 5; i++) {
- 				cards.push(testDrawCard());
+ 				cards.push(this.testDrawCard());
  			}
  			return cards;
  		},
@@ -40,11 +43,18 @@ new Vue({
 				// Definition object
 				def: cards[randomId],
  			}
+		},
+ 		testPlayCard(card) {
+ 			// Remove the card from player hand
+ 			const index = this.testHand.indexOf(card)
+ 			this.testHand.splice(index, 1)
+ 		}
 
-		}
+	},
+	created(){
+		this.testHand = this.createTestHand();
 	}
 });
-
 window.addEventListener('resize', () => {
 	state.worldRatio = getWorldRatio();
-})
+});

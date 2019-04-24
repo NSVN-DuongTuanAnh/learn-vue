@@ -83,7 +83,4 @@
     /* Zoom the card upwards */
     transform: translateX(-106px) translateY(-300px) scale(1.5);
 }
-.card-move {
-    transition: transform .3s;
-}
 
