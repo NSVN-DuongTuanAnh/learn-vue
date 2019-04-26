@@ -15,7 +15,7 @@ var state = {
   turn: 1,
   players: [
     {
-      name: 'Sandra of Stabbings',
+      name: 'Tuan Anh',
       food: 10,
       health: 10,
       skipTurn: false,
@@ -25,7 +25,7 @@ var state = {
       dead: false,
     },
     {
-      name: 'Bibs the Bang-Bang',
+      name: 'Avenger',
       food: 10,
       health: 10,
       skipTurn: false,

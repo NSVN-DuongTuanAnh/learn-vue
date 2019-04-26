@@ -53,9 +53,7 @@
     margin: 0 -100px;
 }
 
-
 /* Card */
-
 .card {
     /* Used for enter, move and mouse over animations */
     transition: all .3s;

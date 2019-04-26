@@ -38,7 +38,7 @@ Vue.component('hand', {
 	props:['cards'],
 	template: `<div class="hand">
 		<div class="wrapper">
-			<transition-group name="card" tag="div" class="cards">
+			<transition-group name="card" tag="div" class="cards" @after-leave="handleLeaveTransitionEnd">
 			<card v-for="card of cards" :def="card.def"
 			 @play="handlePlay(card)" :key="card.uid" />
 			 </transition-group>
@@ -47,6 +47,9 @@ Vue.component('hand', {
 	methods:{
 		handlePlay(card){
 			this.$emit('card-play', card);
+		},
+		handleLeaveTransitionEnd() {
+			this.$emit('card-leave-end');
 		}
 	}
 });
@@ -54,7 +57,7 @@ Vue.component('hand', {
 Vue.component('overlay', {
 	template:`<div class="overlay" @click="handleClick" >
 		<div class="content">
-			<slot />
+			<slot></slot>
 		</div>
 	</div>`,
 	methods:{
@@ -90,13 +93,13 @@ Vue.component('overlay-content-last-play', {
 	</div>`,
 	computed:{
 		lastplayedCard() {
-			return getLastPlaterCard(this.opponent);
+			return getLastPlayedCard(this.opponent);
 		}
 	}
 });
 
 Vue.component('player-result', {
-	props:[player],
+	props:['player'],
 	template:`
 		<div class="player-result" :class="result">
 			<span class="name">{{player.name}}</span> is
