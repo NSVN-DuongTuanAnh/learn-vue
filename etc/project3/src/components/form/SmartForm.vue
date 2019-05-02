@@ -6,7 +6,7 @@
             <div class="actions">
                 <slot name="actions" />
             </div>
-            <div class="error" v-if="error">{{error}}></div>
+            <div class="error" v-if="error">{{error}}</div>
         </section>
         <transition name="fade">
             <Loading v-if="busy" class="overlay" />

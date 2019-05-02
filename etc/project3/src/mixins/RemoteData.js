@@ -14,14 +14,14 @@ export default function (resourses) {
     },
     methods: {
       async fetchResource(key, url) {
-        this.$data.remoteDataLoading++;
+        this.$data.remoteDataLoading ++;
         try {
           this.$data[key] = await this.$fetch(url)
         } catch (e) {
           this.$data.remoteErrors[key] = e;
 
         }
-        this.$data.remoteDataLoading--
+        this.$data.remoteDataLoading --
       }
     },
     computed: {
