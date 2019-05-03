@@ -29,13 +29,25 @@ export default {
           return {
               'invalid': this.invalid
           }
+      },
+      element() {
+        return this.type === 'textarea' ? this.type : 'input';
       }
+      
   }
 };
 </script>
 <template>
     <div class="row">
-        <input :type="type" :class="inputClass" :name="name" :value.prop="value" :placeholder="placeholder" @input="update" />
+        <component :is="element" 
+        :type="type" 
+        :class="inputClass" 
+        :name="name" 
+        :value.prop="value" 
+        :placeholder="placeholder" 
+        v-bind="$attrs"
+        @input="update"
+         />
     </div>
 </template>
 
