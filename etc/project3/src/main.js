@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import AppLayout from './components/AppLayout.vue'
-import 'babel-polyfill'
-import router from './router'
-import './global-components'
-import VueFetch, { $fetch } from './plugins/fetch'
-import state from './state'
-import VueState from './plugins/state'
-import * as filters from './filter'
+import Vue from 'vue';
+import AppLayout from './components/AppLayout.vue';
+import 'babel-polyfill';
+import router from './router';
+import './global-components';
+import VueFetch, { $fetch } from './plugins/fetch';
+import state from './state';
+import VueState from './plugins/state';
+import * as filters from './filter';
 for (const key in filters) {
   Vue.filter(key, filters[key]);
 }
